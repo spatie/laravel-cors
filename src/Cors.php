@@ -28,7 +28,7 @@ class Cors
         $this->corsProfile->setRequest($request);
 
         if (! $this->corsProfile->isAllowed()) {
-            return response('Forbidden.', 403);
+            return $this->forbiddenResponse();
         }
 
         if ($this->isPreflightRequest($request)) {
@@ -48,9 +48,14 @@ class Cors
     protected function handlePreflightRequest()
     {
         if (! $this->corsProfile->isAllowed()) {
-            return response('Forbidden.', 403);
+            return $this->forbiddenResponse();
         }
 
         return $this->corsProfile->addPreflightheaders(response('Preflight OK', 200));
+    }
+
+    protected function forbiddenResponse()
+    {
+        return response('Forbidden.', 403);
     }
 }
