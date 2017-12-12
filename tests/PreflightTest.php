@@ -2,9 +2,6 @@
 
 namespace Spatie\Cors\Tests;
 
-use Spatie\Cors\CorsProfile\CorsProfile;
-use Spatie\Cors\CorsProfile\DefaultProfile;
-
 class PreflightTest extends TestCase
 {
     /** @test */

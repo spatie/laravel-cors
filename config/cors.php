@@ -13,7 +13,7 @@ return [
             'Content-Type',
             'X-Auth-Token',
             'Origin',
-            'Authorization'
+            'Authorization',
         ],
 
         'max_age' => 60 * 60 * 24,

@@ -7,7 +7,7 @@ use Spatie\Cors\CorsProfile\CorsProfile;
 use Spatie\Cors\CorsProfile\DefaultProfile;
 use Spatie\Cors\Exceptions\InvalidCorsProfile;
 
-class CorsServiceProvider extends ServiceProvider
+class CorsLiteServiceProvider extends ServiceProvider
 {
     public function boot()
     {

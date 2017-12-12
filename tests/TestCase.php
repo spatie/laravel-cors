@@ -2,13 +2,13 @@
 
 namespace Spatie\Cors\Tests;
 
+use Exception;
 use Spatie\Cors\Cors;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Exceptions\Handler;
-use Illuminate\Contracts\Debug\ExceptionHandler;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Exception;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 
 class TestCase extends Orchestra
 {
