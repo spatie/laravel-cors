@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\CorsLite\Tests;
+namespace Spatie\Cors\Tests;
 
-use Spatie\CorsLite\CorsProfile\CorsProfile;
-use Spatie\CorsLite\CorsProfile\DefaultProfile;
+use Spatie\Cors\CorsProfile\CorsProfile;
+use Spatie\Cors\CorsProfile\DefaultProfile;
 
 class CorsTest extends TestCase
 {
@@ -20,7 +20,7 @@ class CorsTest extends TestCase
     /** @test */
     public function it_will_send_a_403_for_invalid_requests()
     {
-        config()->set('cors-lite.default_profile.allow_origins', ['https://spatie.be']);
+        config()->set('cors.default_profile.allow_origins', ['https://spatie.be']);
 
         $this
             ->sendRequest('POST', 'https://laravel.com')

@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\CorsLite\CorsProfile;
+namespace Spatie\Cors\CorsProfile;
 
 interface CorsProfile
 {

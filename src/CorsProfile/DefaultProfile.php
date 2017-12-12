@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\CorsLite\CorsProfile;
+namespace Spatie\Cors\CorsProfile;
 
 class DefaultProfile implements CorsProfile
 {
@@ -14,22 +14,22 @@ class DefaultProfile implements CorsProfile
 
     public function allowOrigins(): array
     {
-        return config('cors-lite.default_profile.allow_origins');
+        return config('cors.default_profile.allow_origins');
     }
 
     public function allowMethods(): array
     {
-        return config('cors-lite.default_profile.allow_methods');
+        return config('cors.default_profile.allow_methods');
     }
 
     public function allowHeaders(): array
     {
-        return config('cors-lite.default_profile.allow_headers');
+        return config('cors.default_profile.allow_headers');
     }
 
     public function maxAge(): int
     {
-        return config('cors-lite.default_profile.max_age');
+        return config('cors.default_profile.max_age');
     }
 
     public function addCorsHeaders($response)

@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\CorsLite\Exceptions;
+namespace Spatie\Cors\Exceptions;
 
 use Exception;
-use Spatie\CorsLite\CorsProfile\DefaultProfile;
+use Spatie\Cors\CorsProfile\DefaultProfile;
 
 class InvalidCorsProfile extends Exception
 {

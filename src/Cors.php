@@ -1,14 +1,14 @@
 <?php
 
-namespace Spatie\CorsLite;
+namespace Spatie\Cors;
 
 use Closure;
-use Spatie\CorsLite\CorsProfile\CorsProfile;
+use Spatie\Cors\CorsProfile\CorsProfile;
 use Illuminate\Http\Response;
 
 class Cors
 {
-    /** \Spatie\CorsLite\CorsProfile\CorsProfile */
+    /** \Spatie\Cors\CorsProfile\CorsProfile */
     protected $corsProfile;
 
     public function __construct(CorsProfile $corsProfile)
@@ -56,6 +56,6 @@ class Cors
 
     protected function forbiddenResponse()
     {
-        return dd(response('Forbidden.', 403));
+        return response('Forbidden.', 403);
     }
 }

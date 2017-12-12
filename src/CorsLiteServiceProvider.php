@@ -1,23 +1,23 @@
 <?php
 
-namespace Spatie\CorsLite;
+namespace Spatie\Cors;
 
 use Illuminate\Support\ServiceProvider;
-use Spatie\CorsLite\CorsProfile\CorsProfile;
-use Spatie\CorsLite\CorsProfile\DefaultProfile;
-use Spatie\CorsLite\Exceptions\InvalidCorsProfile;
+use Spatie\Cors\CorsProfile\CorsProfile;
+use Spatie\Cors\CorsProfile\DefaultProfile;
+use Spatie\Cors\Exceptions\InvalidCorsProfile;
 
-class CorsLiteServiceProvider extends ServiceProvider
+class CorsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/cors-lite.php' => config_path('cors-lite.php'),
+                __DIR__.'/../config/cors.php' => config_path('cors.php'),
             ], 'config');
         }
 
-        $configuredCorsProfile = config('cors-lite.cors_profile');
+        $configuredCorsProfile = config('cors.cors_profile');
 
         if (! is_a($configuredCorsProfile, DefaultProfile::class, true)) {
             throw InvalidCorsProfile::profileDoesNotExtendDefaultProfile($configuredCorsProfile);
@@ -28,6 +28,6 @@ class CorsLiteServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/cors-lite.php', 'cors-lite');
+        $this->mergeConfigFrom(__DIR__.'/../config/cors.php', 'cors');
     }
 }

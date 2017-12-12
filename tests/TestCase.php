@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\CorsLite\Tests;
+namespace Spatie\Cors\Tests;
 
-use Spatie\CorsLite\Cors;
+use Spatie\Cors\Cors;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Exceptions\Handler;
@@ -42,7 +42,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            \Spatie\CorsLite\CorsLiteServiceProvider::class,
+            \Spatie\Cors\CorsServiceProvider::class,
         ];
     }
 

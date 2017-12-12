@@ -1,15 +1,15 @@
 {
-    "name": "spatie/laravel-cors-lite",
+    "name": "spatie/laravel-cors",
     "description": "Send CORS headers in a Laravel application",
     "keywords": [
         "spatie",
-        "laravel-cors-lite",
+        "laravel-cors",
         "cors",
         "ajax",
         "request",
         "api"
     ],
-    "homepage": "https://github.com/spatie/laravel-cors-lite",
+    "homepage": "https://github.com/spatie/laravel-cors",
     "license": "MIT",
     "authors": [
         {
@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\CorsLite\\": "src"
+            "Spatie\\Cors\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\CorsLite\\Tests\\": "tests"
+            "Spatie\\Cors\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -45,7 +45,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\CorsLite\\CorsLiteServiceProvider"
+                "Spatie\\Cors\\CorsServiceProvider"
             ]
         }
     }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\CorsLite\Tests;
+namespace Spatie\Cors\Tests;
 
-use Spatie\CorsLite\CorsProfile\CorsProfile;
-use Spatie\CorsLite\CorsProfile\DefaultProfile;
+use Spatie\Cors\CorsProfile\CorsProfile;
+use Spatie\Cors\CorsProfile\DefaultProfile;
 
 class PreflightTest extends TestCase
 {
@@ -23,7 +23,7 @@ class PreflightTest extends TestCase
     /** @test */
     public function it_responds_with_a_403_for_a_preflight_request_with_an_invalid_method()
     {
-        config()->set('cors-lite.default_profile.allow_methods', ['GET']);
+        config()->set('cors.default_profile.allow_methods', ['GET']);
 
         $this
             ->sendPreflightRequest('DELETE', 'https://spatie.be')
@@ -33,7 +33,7 @@ class PreflightTest extends TestCase
     /** @test */
     public function it_responds_with_a_200_for_a_preflight_request_coming_from_an_allowed_origin()
     {
-        config()->set('cors-lite.default_profile.allow_origins', ['https://spatie.be']);
+        config()->set('cors.default_profile.allow_origins', ['https://spatie.be']);
 
         $this
             ->sendPreflightRequest('DELETE', 'https://spatie.be')
@@ -43,7 +43,7 @@ class PreflightTest extends TestCase
     /** @test */
     public function it_responds_with_a_403_for_a_preflight_request_with_an_invalid_origin()
     {
-        config()->set('cors-lite.default_profile.allow_origins', ['https://spatie.be']);
+        config()->set('cors.default_profile.allow_origins', ['https://spatie.be']);
 
         $this
             ->sendPreflightRequest('DELETE', 'https://laravel.com')
