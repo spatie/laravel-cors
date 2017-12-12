@@ -45,22 +45,4 @@ class TestCase extends Orchestra
             \Spatie\Cors\CorsServiceProvider::class,
         ];
     }
-
-    protected function disableExceptionHandling()
-    {
-        $this->app->instance(ExceptionHandler::class, new class extends Handler {
-            public function __construct()
-            {
-            }
-
-            public function report(Exception $e)
-            {
-            }
-
-            public function render($request, Exception $exception)
-            {
-                throw $exception;
-            }
-        });
-    }
 }
