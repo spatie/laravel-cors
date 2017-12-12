@@ -35,8 +35,7 @@ class DefaultProfile implements CorsProfile
     public function addCorsHeaders($response)
     {
         return $response
-            ->header('Access-Control-Allow-Methods', $this->toString($this->allowMethods()))
-            ->header('Access-Control-Allow-Headers', $this->toString($this->allowHeaders()));
+            ->header('Access-Control-Allow-Origin', $this->toString($this->allowOrigins()));
     }
 
     public function addPreflightHeaders($response)

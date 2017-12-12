@@ -16,7 +16,6 @@ class Cors
         $this->corsProfile = $corsProfile;
     }
 
-
     /**
      * Handle an incoming request.
      *
@@ -27,6 +26,10 @@ class Cors
     public function handle($request, Closure $next)
     {
         $this->corsProfile->setRequest($request);
+
+        if (! $this->corsProfile->isAllowed()) {
+            return response('Forbidden.', 403);
+        }
 
         if ($this->isPreflightRequest($request)) {
             return $this->handlePreflightRequest();
