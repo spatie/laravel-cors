@@ -18,7 +18,7 @@ return [
     'default_profile' => [
 
         'allow_origins' => [
-            '*'
+            '*',
         ],
 
         'allow_methods' => [
@@ -26,7 +26,7 @@ return [
             'GET',
             'OPTIONS',
             'PUT',
-            'DELETE'
+            'DELETE',
         ],
 
         'allow_headers' => [
