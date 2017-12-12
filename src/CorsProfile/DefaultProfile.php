@@ -2,7 +2,7 @@
 
 namespace Spatie\CorsLite\CorsProfile;
 
-class DefaultProfile implements
+class DefaultProfile implements CorsProfile
 {
     /** Illuminate\Http\Request */
     protected $request;

@@ -4,6 +4,7 @@ namespace Spatie\CorsLite;
 
 use Illuminate\Support\ServiceProvider;
 use Spatie\CorsLite\Exceptions\InvalidCorsProfile;
+use Spatie\CorsLite\CorsProfile\DefaultProfile;
 
 class CorsLiteServiceProvider extends ServiceProvider
 {
@@ -17,11 +18,11 @@ class CorsLiteServiceProvider extends ServiceProvider
 
         $configuredCorsProfile = config('cors-lite.cors_profile');
 
-        if (! is_subclass_of($configuredCorsProfile, CorsProfile::class)) {
+        if (! is_a($configuredCorsProfile, DefaultProfile::class, true)) {
             throw InvalidCorsProfile::profileDoesNotExtendDefaultProfile($configuredCorsProfile);
         }
 
-        $this->app->bind(CorsProfile::class, $defaultProfileClass);
+        $this->app->bind(CorsProfile::class, $configuredCorsProfile);
     }
 
     public function register()

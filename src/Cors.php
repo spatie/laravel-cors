@@ -11,10 +11,12 @@ class Cors
     /** \Spatie\CorsLite\CorsProfile\CorsProfile */
     protected $corsProfile;
 
+    /*
     public function __construct(CorsProfile $corsProfile)
     {
         $this->corsProfile = $corsProfile;
     }
+    */
 
     /**
      * Handle an incoming request.
@@ -25,6 +27,8 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
+        $this->corsProfile = app(CorsProfile::class);
+
         if ($this->isPreflightRequest($request)) {
             return $this->handlePreflightRequest();
         }

@@ -14,5 +14,5 @@ interface CorsProfile
 
     public function maxAge(): int;
 
-    public function isAllowed($request): bool;
+    public function isAllowed(): bool;
 }

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'cors_profile' => Spatie\CorsLite\DefaultProfile::class,
+    'cors_profile' => Spatie\CorsLite\CorsProfile\DefaultProfile::class,
 
     'default_profile' => [
 
