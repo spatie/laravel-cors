@@ -11,4 +11,9 @@ class CortTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    protected function visitTestRouteFromOrigin()
+    {
+        $this->postJson()
+    }
 }

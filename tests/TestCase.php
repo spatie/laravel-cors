@@ -2,9 +2,9 @@
 
 namespace Spatie\CorsLite\Tests;
 
+use Spatie\CorsLite\Cors;
 use PHPUnit\Framework\TestCase;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\CorsLite\Cors;
 
 class ExampleTest extends Orchestra
 {

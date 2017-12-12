@@ -25,11 +25,11 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-        $response = $next($request);
-
         if ($this->isPreflightRequest($request)) {
             return $this->handlePreflightRequest();
         }
+
+        $response = $next($request);
 
         return $response
             ->header('Access-Control-Allow-Methods', $this->corsProfile->allowMethods())
