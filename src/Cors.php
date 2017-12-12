@@ -8,7 +8,7 @@ use Spatie\Cors\CorsProfile\CorsProfile;
 
 class Cors
 {
-    /** \Spatie\Cors\CorsProfile\CorsProfile */
+    /** @var \Spatie\Cors\CorsProfile\CorsProfile */
     protected $corsProfile;
 
     public function __construct(CorsProfile $corsProfile)
