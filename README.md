@@ -92,7 +92,27 @@ return [
 
 ## Usage
 
+With the middleware installed your api routes should now get apprioriate cors headers. Preflight requests will be handled as well. If a request comes in that is not allowed, Laravel will return a `403` response.
+
+The default configuration of this package allows all requests from any origin. You probably want to at least specify some origins. If you want to allow requests to come in in from `https://spatie.be` and `https://laravel.com` add those domains to the config file:
+
+```php
+// config/cors.php
+
+    ...
+    'default_profile' => [
+
+    'allow_origins' => [
+        'https://spatie.be',
+        'https://laravel.com',
+    ],
+    ...
+...
+```
+
 ### Creating your own cors profile
+
+
 
 ## Testing
 
@@ -114,7 +134,7 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Alternatives
 
-- [barryvdh/laravel-cors](barryvdh/laravel-cors)
+- [barryvdh/laravel-cors](barryvdh/laravel-cors): a tried and tested package. Our package is a modern rewrite of the basic features of this one. We created our own solution because we needed our configuration to be [very flexible](/#writing-your-own-cors-profile).
 
 ## Postcardware
 

@@ -17,9 +17,17 @@ return [
      */
     'default_profile' => [
 
-        'allow_origins' => ['*'],
+        'allow_origins' => [
+            '*'
+        ],
 
-        'allow_methods' => ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE'],
+        'allow_methods' => [
+            'POST',
+            'GET',
+            'OPTIONS',
+            'PUT',
+            'DELETE'
+        ],
 
         'allow_headers' => [
             'Content-Type',
