@@ -56,6 +56,6 @@ class Cors
 
     protected function forbiddenResponse()
     {
-        return response('Forbidden.', 403);
+        return dd(response('Forbidden.', 403));
     }
 }
