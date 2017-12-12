@@ -3,8 +3,8 @@
 namespace Spatie\Cors;
 
 use Closure;
-use Spatie\Cors\CorsProfile\CorsProfile;
 use Illuminate\Http\Response;
+use Spatie\Cors\CorsProfile\CorsProfile;
 
 class Cors
 {
@@ -42,7 +42,7 @@ class Cors
 
     protected function isPreflightRequest($request): bool
     {
-        return $request->getMethod() === "OPTIONS";
+        return $request->getMethod() === 'OPTIONS';
     }
 
     protected function handlePreflightRequest()
