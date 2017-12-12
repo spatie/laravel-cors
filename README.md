@@ -60,9 +60,9 @@ return [
      * A cors profile determines which orgins, methods, headers are allowed for
      * a given requests. The `DefaultProfile` reads its configuration from this
      * config file.
-     * 
-     * You can easily create your own cors profile. 
-     * More info: https://github.com/spatie/laravel-cors/#creating-your-own-cors-profile 
+     *
+     * You can easily create your own cors profile.
+     * More info: https://github.com/spatie/laravel-cors/#creating-your-own-cors-profile
      */
     'cors_profile' => Spatie\Cors\CorsProfile\DefaultProfile::class,
 
@@ -71,9 +71,17 @@ return [
      */
     'default_profile' => [
 
-        'allow_origins' => ['*'],
+        'allow_origins' => [
+            '*'
+        ],
 
-        'allow_methods' => ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE'],
+        'allow_methods' => [
+            'POST',
+            'GET',
+            'OPTIONS',
+            'PUT',
+            'DELETE'
+        ],
 
         'allow_headers' => [
             'Content-Type',
@@ -162,7 +170,7 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Alternatives
 
-- [barryvdh/laravel-cors](barryvdh/laravel-cors): a tried and tested package. Our package is a modern rewrite of the basic features of this Barry's excellent one. We created our own solution because we needed our configuration to be [very flexible](/#creating-your-own-cors-profile).
+- [barryvdh/laravel-cors](barryvdh/laravel-cors): a tried and tested package. Our package is a modern rewrite of the basic features of Barry's excellent one. We created our own solution because we needed our configuration to be [very flexible](/#creating-your-own-cors-profile).
 
 ## Postcardware
 
