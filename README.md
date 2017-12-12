@@ -112,7 +112,35 @@ The default configuration of this package allows all requests from any origin. Y
 
 ### Creating your own cors profile
 
+Imagine you want to specify allowed origins based on the user that is currently logged in. In that case the `DefaultProfile` which just reads the config file won't cut it. Fortunately it's very easy to write your own cors profile. A valid cors profile is any class that extends `Spatie\Cors\DefaultProfile`.
 
+Here's a quick example where it is assumed that you've already added a `allowed_domains` column on your user model:
+
+```php
+namespace App\Services\Cors;
+
+use Spatie\Cors\DefaultProfile;
+
+class UserBasedCorsProfile extends DefaultProfile;
+{
+    public function allowOrigins(): array
+    {
+        return Auth::user()->allowed_domains;
+    }
+}
+```
+
+Don't forget to register your profile in the config file.
+
+```php
+// config/cors.php
+
+ ...
+ 'cors_profile' => App\Services\Cors\UserBasedCorsProfile::class,
+ ...
+```
+
+In the example above we've overwritten the `allowOrigins` method, but of course you may choose to override any of the methods present in `DefaultProfile`.
 
 ## Testing
 
@@ -134,7 +162,7 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Alternatives
 
-- [barryvdh/laravel-cors](barryvdh/laravel-cors): a tried and tested package. Our package is a modern rewrite of the basic features of this one. We created our own solution because we needed our configuration to be [very flexible](/#writing-your-own-cors-profile).
+- [barryvdh/laravel-cors](barryvdh/laravel-cors): a tried and tested package. Our package is a modern rewrite of the basic features of this Barry's excellent one. We created our own solution because we needed our configuration to be [very flexible](/#creating-your-own-cors-profile).
 
 ## Postcardware
 
