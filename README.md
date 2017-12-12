@@ -1,4 +1,4 @@
-# Very short description of the package
+# Send CORS headers in a Laravel application
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-cors.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cors)
 [![Build Status](https://img.shields.io/travis/spatie/laravel-cors/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-cors)
@@ -7,7 +7,9 @@
 [![StyleCI](https://styleci.io/repos/113957368/shield?branch=master)](https://styleci.io/repos/113957368)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-cors.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cors)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This package will add CORS headers to the reponses of your Laravel. Read [this excellent article](https://spring.io/understanding/CORS) on the subject if you want to understand what CORS is all about.
+
+This package support preflight request and is easily configurable to fit your needs.
 
 ## Installation
 
@@ -17,12 +19,80 @@ You can install the package via composer:
 composer require spatie/laravel-cors
 ```
 
+The package will automatically register it's service provider.
+
+The provided `Spatie\Cors\Cors` middleware can be registered in the api middleware group.
+
+```php
+// app/Http/Kernel.php
+
+protected $middlewareGroups = [
+    'api' => [
+        ...
+        \Spatie\Cors\Cors::class
+    ],
+];
+```
+
+Or you could opt to register it as global middleware.
+
+```php
+// app/Http/Kernel.php
+
+protected $middleware = [
+    ...
+    Spatie\Cors\Cors::class
+];
+```
+
+Optionally you can publish the config file with:
+
+```php
+php artisan vendor:publish --provider="Spatie\Cors\CorsServiceProvider" --tag="cors"
+```
+
+This is the default content of the config file published at `config/cors.php`:
+
+```php
+return [
+
+    /*
+     * A cors profile determines which orgins, methods, headers are allowed for
+     * a given requests. The `DefaultProfile` reads its configuration from this
+     * config file.
+     * 
+     * You can easily create your own cors profile. 
+     * More info: https://github.com/spatie/laravel-cors/#creating-your-own-cors-profile 
+     */
+    'cors_profile' => Spatie\Cors\CorsProfile\DefaultProfile::class,
+
+    /*
+     * These configuration is used by `DefaultProfile`.
+     */
+    'default_profile' => [
+
+        'allow_origins' => ['*'],
+
+        'allow_methods' => ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE'],
+
+        'allow_headers' => [
+            'Content-Type',
+            'X-Auth-Token',
+            'Origin',
+            'Authorization',
+        ],
+
+        /*
+         * Preflight request will respond with value for the max age header.
+         */
+        'max_age' => 60 * 60 * 24,
+    ],
+];
+```
+
 ## Usage
 
-``` php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
-```
+### Creating your own cors profile
 
 ### Testing
 
