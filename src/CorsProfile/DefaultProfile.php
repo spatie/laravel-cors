@@ -29,7 +29,7 @@ class DefaultProfile implements CorsProfile
 
     public function maxAge(): int
     {
-        return config('cors-lite.default_profile.maxAge');
+        return config('cors-lite.default_profile.max_age');
     }
 
     public function isAllowed(): bool

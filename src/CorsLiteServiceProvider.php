@@ -3,8 +3,9 @@
 namespace Spatie\CorsLite;
 
 use Illuminate\Support\ServiceProvider;
-use Spatie\CorsLite\Exceptions\InvalidCorsProfile;
+use Spatie\CorsLite\CorsProfile\CorsProfile;
 use Spatie\CorsLite\CorsProfile\DefaultProfile;
+use Spatie\CorsLite\Exceptions\InvalidCorsProfile;
 
 class CorsLiteServiceProvider extends ServiceProvider
 {

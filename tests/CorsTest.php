@@ -8,15 +8,13 @@ use Spatie\CorsLite\CorsProfile\DefaultProfile;
 class CorsTest extends TestCase
 {
     /** @test */
-    public function it_can_resolve_the_profile()
+    public function it_responds_with_a_200_for_a_valid_preflight_request()
     {
-        $this->assertInstanceOf(DefaultProfile::class, app(CorsProfile::class));
-    }
-
-    /** @test */
-    public function it_tests()
-    {
-        $response = $this->sendPreflightRequest('DELETE', 'https://spatie.be');
+        $response = $this
+            ->sendPreflightRequest('DELETE', 'https://spatie.be')
+            ->assertSuccessful()
+            ->assertSee('Preflight OK');
+        dd($response);
     }
 
     public function sendPreflightRequest(string $method, string $origin)

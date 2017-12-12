@@ -11,12 +11,11 @@ class Cors
     /** \Spatie\CorsLite\CorsProfile\CorsProfile */
     protected $corsProfile;
 
-    /*
     public function __construct(CorsProfile $corsProfile)
     {
         $this->corsProfile = $corsProfile;
     }
-    */
+
 
     /**
      * Handle an incoming request.
@@ -27,7 +26,7 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-        $this->corsProfile = app(CorsProfile::class);
+        $this->corsProfile->setRequest($request);
 
         if ($this->isPreflightRequest($request)) {
             return $this->handlePreflightRequest();
@@ -51,7 +50,7 @@ class Cors
             return response('Forbidden.', 403);
         }
 
-        return response('OK', 200, $headers)
+        return response('Preflight OK', 200)
             ->header('Access-Control-Allow-Methods', $this->corsProfile->allowMethods())
             ->header('Access-Control-Allow-Headers', $this->corsProfile->allowHeaders())
             ->header('Access-Control-Allow-Origin', $this->corsProfile->allowOrigins())
