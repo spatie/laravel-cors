@@ -32,6 +32,22 @@ class DefaultProfile implements CorsProfile
         return config('cors-lite.default_profile.max_age');
     }
 
+    public function addCorsHeaders($response)
+    {
+        return $response
+            ->header('Access-Control-Allow-Methods', $this->toString($this->allowMethods()))
+            ->header('Access-Control-Allow-Headers', $this->toString($this->allowHeaders()));
+    }
+
+    public function addPreflightHeaders($response)
+    {
+        return $response
+            ->header('Access-Control-Allow-Methods', $this->toString($this->allowMethods()))
+            ->header('Access-Control-Allow-Headers', $this->toString($this->allowHeaders()))
+            ->header('Access-Control-Allow-Origin', $this->toString($this->allowOrigins()))
+            ->header('Access-Control-Max-Age', $this->maxAge());
+    }
+
     public function isAllowed(): bool
     {
         if (! in_array($this->request->method(), $this->allowMethods())) {
@@ -42,6 +58,11 @@ class DefaultProfile implements CorsProfile
             return true;
         }
 
-        return in_array($request->header('Origin'), $this->allowOrigins());
+        return in_array($this->request->header('Origin'), $this->allowOrigins());
+    }
+
+    protected function toString(array $array): string
+    {
+        return implode(', ', $array);
     }
 }

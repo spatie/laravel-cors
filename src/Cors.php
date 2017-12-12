@@ -34,9 +34,7 @@ class Cors
 
         $response = $next($request);
 
-        return $response
-            ->header('Access-Control-Allow-Methods', $this->corsProfile->allowMethods())
-            ->header('Access-Control-Allow-Headers', $this->corsProfile->allowHeaders());
+        return $this->corsProfile->addCorsHeaders($response);
     }
 
     protected function isPreflightRequest($request): bool
@@ -50,10 +48,6 @@ class Cors
             return response('Forbidden.', 403);
         }
 
-        return response('Preflight OK', 200)
-            ->header('Access-Control-Allow-Methods', $this->corsProfile->allowMethods())
-            ->header('Access-Control-Allow-Headers', $this->corsProfile->allowHeaders())
-            ->header('Access-Control-Allow-Origin', $this->corsProfile->allowOrigins())
-            ->header('Access-Control-Max-Age', $this->corsProfile->maxAge());
+        return $this->corsProfile->addPreflightheaders(response('Preflight OK', 200));
     }
 }
