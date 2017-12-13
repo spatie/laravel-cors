@@ -46,8 +46,8 @@ class Cors
 
     protected function isCorsRequest($request): bool
     {
-        if ($request->headers->has('Origin')) {
-            return true;
+        if (! $request->headers->has('Origin')) {
+            return false;
         }
 
         return $request->headers->get('Origin') !== $request->getSchemeAndHttpHost();
