@@ -25,6 +25,10 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
+        if (! $this->isCorsRequest($request)) {
+            return $next($request);
+        }
+
         $this->corsProfile->setRequest($request);
 
         if (! $this->corsProfile->isAllowed()) {
@@ -38,6 +42,15 @@ class Cors
         $response = $next($request);
 
         return $this->corsProfile->addCorsHeaders($response);
+    }
+
+    protected function isCorsRequest($request): bool
+    {
+        if ($request->headers->has('Origin')) {
+            return true;
+        }
+
+        return $request->headers->get('Origin') !== $request->getSchemeAndHttpHost();
     }
 
     protected function isPreflightRequest($request): bool
