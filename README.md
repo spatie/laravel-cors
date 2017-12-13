@@ -1,3 +1,5 @@
+**WORK IN PROGRESS, DO NOT USE YET**
+
 # Send CORS headers in a Laravel application
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-cors.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cors)
@@ -48,7 +50,7 @@ protected $middleware = [
 Optionally you can publish the config file with:
 
 ```php
-php artisan vendor:publish --provider="Spatie\Cors\CorsServiceProvider" --tag="cors"
+php artisan vendor:publish --provider="Spatie\Cors\CorsServiceProvider" --tag="config"
 ```
 
 This is the default content of the config file published at `config/cors.php`:
