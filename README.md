@@ -43,7 +43,7 @@ Or you could opt to register it as global middleware.
 
 protected $middleware = [
     ...
-    Spatie\Cors\Cors::class
+    \Spatie\Cors\Cors::class
 ];
 ```
 
