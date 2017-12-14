@@ -21,18 +21,7 @@ composer require spatie/laravel-cors
 
 The package will automatically register it's service provider.
 
-The provided `Spatie\Cors\Cors` middleware can be registered in the api middleware group.
-
-```php
-// app/Http/Kernel.php
-
-protected $middlewareGroups = [
-    'api' => [
-        ...
-        \Spatie\Cors\Cors::class
-    ],
-];
-```
+The provided `Spatie\Cors\Cors` middleware must be registered in the global middleware group.
 
 Or you could opt to register it as global middleware.
 
@@ -44,8 +33,6 @@ protected $middleware = [
     Spatie\Cors\Cors::class
 ];
 ```
-
-Optionally you can publish the config file with:
 
 ```php
 php artisan vendor:publish --provider="Spatie\Cors\CorsServiceProvider" --tag="cors"
@@ -189,7 +176,7 @@ We publish all received postcards [on our company website](https://spatie.be/en/
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
-Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie). 
+Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie).
 All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
 
 ## License
