@@ -26,6 +26,7 @@ return [
             'GET',
             'OPTIONS',
             'PUT',
+            'PATCH',
             'DELETE',
         ],
 

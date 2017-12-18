@@ -11,7 +11,7 @@ class PreflightTest extends TestCase
             ->sendPreflightRequest('DELETE', 'https://spatie.be')
             ->assertSuccessful()
             ->assertSee('Preflight OK')
-            ->assertHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
+            ->assertHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, PATCH, DELETE')
             ->assertHeader('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization')
             ->assertHeader('Access-Control-Allow-Origin', '*')
             ->assertHeader('Access-Control-Max-Age', 60 * 60 * 24);
