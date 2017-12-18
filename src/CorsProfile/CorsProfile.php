@@ -2,6 +2,8 @@
 
 namespace Spatie\Cors\CorsProfile;
 
+use Symfony\Component\HttpFoundation\Response;
+
 interface CorsProfile
 {
     public function setRequest($request);
@@ -11,6 +13,10 @@ interface CorsProfile
     public function allowMethods(): array;
 
     public function allowHeaders(): array;
+
+    public function addCorsHeaders($response);
+
+    public function addPreflightHeaders($response);
 
     public function maxAge(): int;
 
