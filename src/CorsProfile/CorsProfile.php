@@ -2,8 +2,6 @@
 
 namespace Spatie\Cors\CorsProfile;
 
-use Symfony\Component\HttpFoundation\Response;
-
 interface CorsProfile
 {
     public function setRequest($request);
