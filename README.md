@@ -1,5 +1,3 @@
-**WORK IN PROGRESS, DO NOT USE YET**
-
 # Send CORS headers in a Laravel application
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-cors.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cors)
