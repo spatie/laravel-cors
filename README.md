@@ -25,18 +25,7 @@ The package will automatically register it's service provider.
 
 The provided `Spatie\Cors\Cors` middleware can be registered in the api middleware group.
 
-```php
-// app/Http/Kernel.php
-
-protected $middlewareGroups = [
-    'api' => [
-        ...
-        \Spatie\Cors\Cors::class
-    ],
-];
-```
-
-Or you could opt to register it as global middleware.
+You must register it as global middleware.
 
 ```php
 // app/Http/Kernel.php
@@ -57,7 +46,6 @@ This is the default content of the config file published at `config/cors.php`:
 
 ```php
 return [
-
     /*
      * A cors profile determines which orgins, methods, headers are allowed for
      * a given requests. The `DefaultProfile` reads its configuration from this
@@ -69,7 +57,7 @@ return [
     'cors_profile' => Spatie\Cors\CorsProfile\DefaultProfile::class,
 
     /*
-     * These configuration is used by `DefaultProfile`.
+     * This configuration is used by `DefaultProfile`.
      */
     'default_profile' => [
 

@@ -13,7 +13,7 @@ return [
     'cors_profile' => Spatie\Cors\CorsProfile\DefaultProfile::class,
 
     /*
-     * These configuration is used by `DefaultProfile`.
+     * This configuration is used by `DefaultProfile`.
      */
     'default_profile' => [
 
