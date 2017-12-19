@@ -158,7 +158,7 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Alternatives
 
-- [barryvdh/laravel-cors](barryvdh/laravel-cors): a tried and tested package. Our package is a modern rewrite of the basic features of Barry's excellent one. We created our own solution because we needed our configuration to be [very flexible](#creating-your-own-cors-profile).
+- [barryvdh/laravel-cors](https://github.com/barryvdh/laravel-cors): a tried and tested package. Our package is a modern rewrite of the basic features of Barry's excellent one. We created our own solution because we needed our configuration to be [very flexible](#creating-your-own-cors-profile).
 
 ## Postcardware
 
