@@ -6,7 +6,7 @@
 [![StyleCI](https://styleci.io/repos/113957368/shield?branch=master)](https://styleci.io/repos/113957368)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-cors.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cors)
 
-This package will add CORS headers to the responses of your Laravel. Read [this excellent article](https://spring.io/understanding/CORS) on the subject if you want to understand what CORS is all about.
+This package will add CORS headers to the responses of your Laravel app. Read [this excellent article](https://spring.io/understanding/CORS) on the subject if you want to understand what CORS is all about.
 
 This package support preflight request and is easily configurable to fit your needs.
 
