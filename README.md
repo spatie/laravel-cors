@@ -20,8 +20,6 @@ composer require spatie/laravel-cors
 
 The package will automatically register it's service provider.
 
-The provided `Spatie\Cors\Cors` middleware can be registered in the api middleware group.
-
 You must register it as global middleware.
 
 ```php
