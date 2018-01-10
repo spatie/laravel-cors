@@ -8,7 +8,7 @@
 
 This package will add CORS headers to the responses of your Laravel app. Read [this excellent article](https://spring.io/understanding/CORS) on the subject if you want to understand what CORS is all about.
 
-This package support preflight request and is easily configurable to fit your needs.
+This package supports preflight requests and is easily configurable to fit your needs.
 
 ## Installation
 
@@ -18,7 +18,7 @@ You can install the package via composer:
 composer require spatie/laravel-cors
 ```
 
-The package will automatically register it's service provider.
+The package will automatically register its service provider.
 
 You must register it as global middleware.
 
@@ -86,9 +86,9 @@ return [
 
 ## Usage
 
-With the middleware installed your api routes should now get apprioriate cors headers. Preflight requests will be handled as well. If a request comes in that is not allowed, Laravel will return a `403` response.
+With the middleware installed your API routes should now get apprioriate CORS headers. Preflight requests will be handled as well. If a request comes in that is not allowed, Laravel will return a `403` response.
 
-The default configuration of this package allows all requests from any origin. You probably want to at least specify some origins. If you want to allow requests to come in in from `https://spatie.be` and `https://laravel.com` add those domains to the config file:
+The default configuration of this package allows all requests from any origin (denoted as `'*'`). You probably want to at least specify some origins relevant to your project. If you want to allow requests to come in from `https://spatie.be` and `https://laravel.com` add those domains to the config file:
 
 ```php
 // config/cors.php
@@ -104,11 +104,11 @@ The default configuration of this package allows all requests from any origin. Y
 ...
 ```
 
-### Creating your own cors profile
+### Creating your own CORS profile
 
-Imagine you want to specify allowed origins based on the user that is currently logged in. In that case the `DefaultProfile` which just reads the config file won't cut it. Fortunately it's very easy to write your own cors profile. A valid cors profile is any class that extends `Spatie\Cors\DefaultProfile`.
+Imagine you want to specify allowed origins based on the user that is currently logged in. In that case the `DefaultProfile` which just reads the config file won't cut it. Fortunately it's very easy to write your own CORS profile, which is simply a class that extends `Spatie\Cors\DefaultProfile`.
 
-Here's a quick example where it is assumed that you've already added a `allowed_domains` column on your user model:
+Here's a quick example where it is assumed that you've already added an `allowed_domains` column on your user model:
 
 ```php
 namespace App\Services\Cors;
