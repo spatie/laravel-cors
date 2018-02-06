@@ -113,7 +113,7 @@ Here's a quick example where it is assumed that you've already added an `allowed
 ```php
 namespace App\Services\Cors;
 
-use Spatie\Cors\DefaultProfile;
+use Spatie\Cors\CorsProfile\DefaultProfile;
 
 class UserBasedCorsProfile extends DefaultProfile;
 {
