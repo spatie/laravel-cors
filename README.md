@@ -12,7 +12,12 @@ This package supports preflight requests and is easily configurable to fit your 
 
 ## Installation
 
-You can install the package via composer:
+- [Laravel](#laravel)
+- [Lumen](#lumen)
+
+### Laravel
+
+You can install the package via Composer:
 
 ```bash
 composer require spatie/laravel-cors
@@ -82,6 +87,32 @@ return [
         'max_age' => 60 * 60 * 24,
     ],
 ];
+```
+
+### Lumen
+
+You can install the package via Composer:
+
+```bash
+composer require spatie/laravel-cors
+```
+
+Copy the config file from the vendor directory:
+
+```bash
+cp vendor/spatie/laravel-cors/config/cors.php config/cors.php
+```
+
+Register the config file, the middleware and the service provider in `bootstrap/app.php`:
+
+```php
+$app->configure('cors');
+
+$app->middleware([
+    Spatie\Cors\Cors::class,
+]);
+
+$app->register(Spatie\Cors\CorsServiceProvider::class);
 ```
 
 ## Usage
