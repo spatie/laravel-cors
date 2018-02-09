@@ -11,9 +11,9 @@ class CorsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
+        if ($this->isNotLumen() && $this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/cors.php' => config_path('cors.php'),
+                __DIR__ . '/../config/cors.php' => config_path('cors.php'),
             ], 'config');
         }
 
@@ -28,6 +28,13 @@ class CorsServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/cors.php', 'cors');
+        if ($this->isNotLumen()) {
+            $this->mergeConfigFrom(__DIR__ . '/../config/cors.php', 'cors');
+        }
+    }
+
+    protected function isNotLumen()
+    {
+        return ! preg_match('/lumen/i', app()->version());
     }
 }
