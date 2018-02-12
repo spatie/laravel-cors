@@ -6,13 +6,18 @@
 [![StyleCI](https://styleci.io/repos/113957368/shield?branch=master)](https://styleci.io/repos/113957368)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-cors.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cors)
 
-This package will add CORS headers to the responses of your Laravel app. Read [this excellent article](https://spring.io/understanding/CORS) on the subject if you want to understand what CORS is all about.
+This package will add CORS headers to the responses of your Laravel or Lumen app. Read [this excellent article](https://spring.io/understanding/CORS) on the subject if you want to understand what CORS is all about.
 
 This package supports preflight requests and is easily configurable to fit your needs.
 
 ## Installation
 
-You can install the package via composer:
+- [Laravel](#laravel)
+- [Lumen](#lumen)
+
+### Laravel
+
+You can install the package via Composer:
 
 ```bash
 composer require spatie/laravel-cors
@@ -82,6 +87,32 @@ return [
         'max_age' => 60 * 60 * 24,
     ],
 ];
+```
+
+### Lumen
+
+You can install the package via Composer:
+
+```bash
+composer require spatie/laravel-cors
+```
+
+Copy the config file from the vendor directory:
+
+```bash
+cp vendor/spatie/laravel-cors/config/cors.php config/cors.php
+```
+
+Register the config file, the middleware and the service provider in `bootstrap/app.php`:
+
+```php
+$app->configure('cors');
+
+$app->middleware([
+    Spatie\Cors\Cors::class,
+]);
+
+$app->register(Spatie\Cors\CorsServiceProvider::class);
 ```
 
 ## Usage

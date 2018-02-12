@@ -1,6 +1,6 @@
 {
     "name": "spatie/laravel-cors",
-    "description": "Send CORS headers in a Laravel application",
+    "description": "Send CORS headers in a Laravel or Lumen application",
     "keywords": [
         "spatie",
         "laravel-cors",
