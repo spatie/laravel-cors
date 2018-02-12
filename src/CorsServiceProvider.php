@@ -13,7 +13,7 @@ class CorsServiceProvider extends ServiceProvider
     {
         if ($this->isLaravel() && $this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/cors.php' => config_path('cors.php'),
+                __DIR__.'/../config/cors.php' => config_path('cors.php'),
             ], 'config');
         }
 
@@ -29,7 +29,7 @@ class CorsServiceProvider extends ServiceProvider
     public function register()
     {
         if ($this->isLaravel()) {
-            $this->mergeConfigFrom(__DIR__ . '/../config/cors.php', 'cors');
+            $this->mergeConfigFrom(__DIR__.'/../config/cors.php', 'cors');
         }
     }
 
