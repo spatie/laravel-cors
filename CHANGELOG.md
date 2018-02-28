@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-cors` will be documented in this file
 
+## 1.0.3 - 2018-02-28
+
+- fix typo in config
+
 ## 1.0.2 - 2018-02-12
 
 - add support for Lumen
