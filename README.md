@@ -80,6 +80,11 @@ return [
             'Origin',
             'Authorization',
         ],
+        
+        'forbidden_response' => [
+            'message' => 'Forbidden (cors).',
+            'status' => 403,
+        ],
 
         /*
          * Preflight request will respond with value for the max age header.
@@ -153,6 +158,22 @@ class UserBasedCorsProfile extends DefaultProfile;
         return Auth::user()->allowed_domains;
     }
 }
+```
+
+You can specify a custom HTTP status code and message for the response sent when a request is forbidden by adding the appropriate methods to your custom profile class. In this example, we make use of Laravel's Localization feature:
+
+
+```php
+    public function forbiddenMessage(): string
+    {
+        return __('errors.cors.forbidden');
+    }
+    
+
+    public function forbiddenStatus(): int
+    {
+        return 400;
+    }
 ```
 
 Don't forget to register your profile in the config file.
