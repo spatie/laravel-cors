@@ -62,7 +62,7 @@ class DefaultProfile implements CorsProfile
 
     public function forbiddenMessage(): string
     {
-        if (!is_string(config('cors.default_profile.forbidden_response.message'))) {
+        if (! is_string(config('cors.default_profile.forbidden_response.message'))) {
             return 'Forbidden (cors).';
         }
 
@@ -71,7 +71,7 @@ class DefaultProfile implements CorsProfile
 
     public function forbiddenStatus(): int
     {
-        if (!is_integer(config('cors.default_profile.forbidden_response.status'))) {
+        if (! is_int(config('cors.default_profile.forbidden_response.status'))) {
             return 403;
         }
 
