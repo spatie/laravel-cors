@@ -69,6 +69,9 @@ class Cors
 
     protected function forbiddenResponse()
     {
-        return response('Forbidden (cors).', 403);
+        return response(
+            $this->corsProfile->forbiddenMessage(),
+            $this->corsProfile->forbiddenStatus()
+        );
     }
 }
