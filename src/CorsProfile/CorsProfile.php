@@ -19,8 +19,4 @@ interface CorsProfile
     public function maxAge(): int;
 
     public function isAllowed(): bool;
-
-    public function forbiddenMessage(): string;
-
-    public function forbiddenStatus(): int;
 }

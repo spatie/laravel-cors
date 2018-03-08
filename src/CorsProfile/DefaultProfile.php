@@ -60,24 +60,6 @@ class DefaultProfile implements CorsProfile
         return in_array($this->request->header('Origin'), $this->allowOrigins());
     }
 
-    public function forbiddenMessage(): string
-    {
-        if (! is_string(config('cors.default_profile.forbidden_response.message'))) {
-            return 'Forbidden (cors).';
-        }
-
-        return config('cors.default_profile.forbidden_response.message');
-    }
-
-    public function forbiddenStatus(): int
-    {
-        if (! is_int(config('cors.default_profile.forbidden_response.status'))) {
-            return 403;
-        }
-
-        return config('cors.default_profile.forbidden_response.status');
-    }
-
     protected function toString(array $array): string
     {
         return implode(', ', $array);
