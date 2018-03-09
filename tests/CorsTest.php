@@ -46,7 +46,24 @@ class CorsTest extends TestCase
 
         $this
             ->sendRequest('POST', 'https://laravel.com')
-            ->assertStatus(403);
+            ->assertStatus(403)
+            ->assertSee('Forbidden (cors).');
+    }
+
+    /** @test */
+    public function it_sends_the_custom_forbidden_response_for_invalid_requests()
+    {
+        $forbiddenMessage = 'Custom forbidden message';
+        $forbiddenStatus = 400;
+
+        config()->set('cors.default_profile.allow_origins', ['https://spatie.be']);
+        config()->set('cors.default_profile.forbidden_response.message', $forbiddenMessage);
+        config()->set('cors.default_profile.forbidden_response.status', $forbiddenStatus);
+
+        $this
+            ->sendRequest('POST', 'https://laravel.com')
+            ->assertStatus($forbiddenStatus)
+            ->assertSee($forbiddenMessage);
     }
 
     public function sendRequest(string $method, string $origin)

@@ -80,6 +80,11 @@ return [
             'Origin',
             'Authorization',
         ],
+        
+        'forbidden_response' => [
+            'message' => 'Forbidden (cors).',
+            'status' => 403,
+        ],
 
         /*
          * Preflight request will respond with value for the max age header.
@@ -153,6 +158,15 @@ class UserBasedCorsProfile extends DefaultProfile;
         return Auth::user()->allowed_domains;
     }
 }
+```
+
+You can override the default HTTP status code and message returned when a request is forbidden by editing the `forbidden_response` array in your configuration file:
+
+```php
+    'forbidden_response' => [
+        'message' => 'Your request failed',
+        'status' => 400,
+    ],
 ```
 
 Don't forget to register your profile in the config file.

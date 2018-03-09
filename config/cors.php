@@ -37,6 +37,11 @@ return [
             'Authorization',
         ],
 
+        'forbidden_response' => [
+            'message' => 'Forbidden (cors).',
+            'status' => 403,
+        ],
+
         /*
          * Preflight request will respond with value for the max age header.
          */

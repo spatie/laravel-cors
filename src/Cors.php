@@ -69,6 +69,12 @@ class Cors
 
     protected function forbiddenResponse()
     {
-        return response('Forbidden (cors).', 403);
+        $message = config('cors.default_profile.forbidden_response.message');
+        $status = config('cors.default_profile.forbidden_response.status');
+
+        return response(
+            is_string($message) ? $message : 'Forbidden (cors).',
+            is_int($status) ? $status : 403
+        );
     }
 }
