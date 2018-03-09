@@ -2,47 +2,48 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-cors.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cors)
 [![Build Status](https://img.shields.io/travis/spatie/laravel-cors/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-cors)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/e913c9eb-556b-4e2e-84b8-3913ed46a87a.svg?style=flat-square)](https://insight.sensiolabs.com/projects/e913c9eb-556b-4e2e-84b8-3913ed46a87a)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-cors.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-cors)
 [![StyleCI](https://styleci.io/repos/113957368/shield?branch=master)](https://styleci.io/repos/113957368)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-cors.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cors)
 
-This package will add CORS headers to the reponses of your Laravel. Read [this excellent article](https://spring.io/understanding/CORS) on the subject if you want to understand what CORS is all about.
+This package will add CORS headers to the responses of your Laravel or Lumen app. Read [this excellent article](https://spring.io/understanding/CORS) on the subject if you want to understand what CORS is all about.
 
-This package support preflight request and is easily configurable to fit your needs.
+This package supports preflight requests and is easily configurable to fit your needs.
 
 ## Installation
 
-You can install the package via composer:
+- [Laravel](#laravel)
+- [Lumen](#lumen)
+
+### Laravel
+
+You can install the package via Composer:
 
 ```bash
 composer require spatie/laravel-cors
 ```
 
-The package will automatically register it's service provider.
+The package will automatically register its service provider.
 
 The provided `Spatie\Cors\Cors` middleware must be registered in the global middleware group.
-
-Or you could opt to register it as global middleware.
 
 ```php
 // app/Http/Kernel.php
 
 protected $middleware = [
     ...
-    Spatie\Cors\Cors::class
+    \Spatie\Cors\Cors::class
 ];
 ```
 
 ```php
-php artisan vendor:publish --provider="Spatie\Cors\CorsServiceProvider" --tag="cors"
+php artisan vendor:publish --provider="Spatie\Cors\CorsServiceProvider" --tag="config"
 ```
 
 This is the default content of the config file published at `config/cors.php`:
 
 ```php
 return [
-
     /*
      * A cors profile determines which orgins, methods, headers are allowed for
      * a given requests. The `DefaultProfile` reads its configuration from this
@@ -54,12 +55,12 @@ return [
     'cors_profile' => Spatie\Cors\CorsProfile\DefaultProfile::class,
 
     /*
-     * These configuration is used by `DefaultProfile`.
+     * This configuration is used by `DefaultProfile`.
      */
     'default_profile' => [
 
         'allow_origins' => [
-            '*'
+            '*',
         ],
 
         'allow_methods' => [
@@ -67,7 +68,8 @@ return [
             'GET',
             'OPTIONS',
             'PUT',
-            'DELETE'
+            'PATCH',
+            'DELETE',
         ],
 
         'allow_headers' => [
@@ -75,6 +77,11 @@ return [
             'X-Auth-Token',
             'Origin',
             'Authorization',
+        ],
+        
+        'forbidden_response' => [
+            'message' => 'Forbidden (cors).',
+            'status' => 403,
         ],
 
         /*
@@ -85,11 +92,37 @@ return [
 ];
 ```
 
+### Lumen
+
+You can install the package via Composer:
+
+```bash
+composer require spatie/laravel-cors
+```
+
+Copy the config file from the vendor directory:
+
+```bash
+cp vendor/spatie/laravel-cors/config/cors.php config/cors.php
+```
+
+Register the config file, the middleware and the service provider in `bootstrap/app.php`:
+
+```php
+$app->configure('cors');
+
+$app->middleware([
+    Spatie\Cors\Cors::class,
+]);
+
+$app->register(Spatie\Cors\CorsServiceProvider::class);
+```
+
 ## Usage
 
-With the middleware installed your api routes should now get apprioriate cors headers. Preflight requests will be handled as well. If a request comes in that is not allowed, Laravel will return a `403` response.
+With the middleware installed your API routes should now get apprioriate CORS headers. Preflight requests will be handled as well. If a request comes in that is not allowed, Laravel will return a `403` response.
 
-The default configuration of this package allows all requests from any origin. You probably want to at least specify some origins. If you want to allow requests to come in in from `https://spatie.be` and `https://laravel.com` add those domains to the config file:
+The default configuration of this package allows all requests from any origin (denoted as `'*'`). You probably want to at least specify some origins relevant to your project. If you want to allow requests to come in from `https://spatie.be` and `https://laravel.com` add those domains to the config file:
 
 ```php
 // config/cors.php
@@ -105,16 +138,16 @@ The default configuration of this package allows all requests from any origin. Y
 ...
 ```
 
-### Creating your own cors profile
+### Creating your own CORS profile
 
-Imagine you want to specify allowed origins based on the user that is currently logged in. In that case the `DefaultProfile` which just reads the config file won't cut it. Fortunately it's very easy to write your own cors profile. A valid cors profile is any class that extends `Spatie\Cors\DefaultProfile`.
+Imagine you want to specify allowed origins based on the user that is currently logged in. In that case the `DefaultProfile` which just reads the config file won't cut it. Fortunately it's very easy to write your own CORS profile, which is simply a class that extends `Spatie\Cors\DefaultProfile`.
 
-Here's a quick example where it is assumed that you've already added a `allowed_domains` column on your user model:
+Here's a quick example where it is assumed that you've already added an `allowed_domains` column on your user model:
 
 ```php
 namespace App\Services\Cors;
 
-use Spatie\Cors\DefaultProfile;
+use Spatie\Cors\CorsProfile\DefaultProfile;
 
 class UserBasedCorsProfile extends DefaultProfile;
 {
@@ -123,6 +156,15 @@ class UserBasedCorsProfile extends DefaultProfile;
         return Auth::user()->allowed_domains;
     }
 }
+```
+
+You can override the default HTTP status code and message returned when a request is forbidden by editing the `forbidden_response` array in your configuration file:
+
+```php
+'forbidden_response' => [
+    'message' => 'Your request failed',
+    'status' => 400,
+],
 ```
 
 Don't forget to register your profile in the config file.
@@ -157,7 +199,7 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Alternatives
 
-- [barryvdh/laravel-cors](barryvdh/laravel-cors): a tried and tested package. Our package is a modern rewrite of the basic features of Barry's excellent one. We created our own solution because we needed our configuration to be [very flexible](/#creating-your-own-cors-profile).
+- [barryvdh/laravel-cors](https://github.com/barryvdh/laravel-cors): a tried and tested package. Our package is a modern rewrite of the basic features of Barry's excellent one. We created our own solution because we needed our configuration to be [very flexible](#creating-your-own-cors-profile).
 
 ## Postcardware
 

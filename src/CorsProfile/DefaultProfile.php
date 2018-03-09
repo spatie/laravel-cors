@@ -35,7 +35,7 @@ class DefaultProfile implements CorsProfile
     public function addCorsHeaders($response)
     {
         return $response
-            ->header('Access-Control-Allow-Origin', $this->toString($this->allowOrigins()));
+            ->header('Access-Control-Allow-Origin', $this->allowedOriginsToString());
     }
 
     public function addPreflightHeaders($response)
@@ -43,7 +43,7 @@ class DefaultProfile implements CorsProfile
         return $response
             ->header('Access-Control-Allow-Methods', $this->toString($this->allowMethods()))
             ->header('Access-Control-Allow-Headers', $this->toString($this->allowHeaders()))
-            ->header('Access-Control-Allow-Origin', $this->toString($this->allowOrigins()))
+            ->header('Access-Control-Allow-Origin', $this->allowedOriginsToString())
             ->header('Access-Control-Max-Age', $this->maxAge());
     }
 
@@ -63,5 +63,18 @@ class DefaultProfile implements CorsProfile
     protected function toString(array $array): string
     {
         return implode(', ', $array);
+    }
+
+    protected function allowedOriginsToString(): string
+    {
+        if (! $this->isAllowed()) {
+            return '';
+        }
+
+        if (in_array('*', $this->allowOrigins())) {
+            return '*';
+        }
+
+        return $this->request->header('Origin');
     }
 }

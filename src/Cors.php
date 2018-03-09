@@ -25,6 +25,10 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
+        if (! $this->isCorsRequest($request)) {
+            return $next($request);
+        }
+
         $this->corsProfile->setRequest($request);
 
         if (! $this->corsProfile->isAllowed()) {
@@ -40,6 +44,15 @@ class Cors
         return $this->corsProfile->addCorsHeaders($response);
     }
 
+    protected function isCorsRequest($request): bool
+    {
+        if (! $request->headers->has('Origin')) {
+            return false;
+        }
+
+        return $request->headers->get('Origin') !== $request->getSchemeAndHttpHost();
+    }
+
     protected function isPreflightRequest($request): bool
     {
         return $request->getMethod() === 'OPTIONS';
@@ -51,11 +64,17 @@ class Cors
             return $this->forbiddenResponse();
         }
 
-        return $this->corsProfile->addPreflightheaders(response('Preflight OK', 200));
+        return $this->corsProfile->addPreflightHeaders(response('Preflight OK', 200));
     }
 
     protected function forbiddenResponse()
     {
-        return response('Forbidden.', 403);
+        $message = config('cors.default_profile.forbidden_response.message');
+        $status = config('cors.default_profile.forbidden_response.status');
+
+        return response(
+            $message ?? 'Forbidden (cors).',
+            $status ?? 403
+        );
     }
 }

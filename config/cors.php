@@ -3,7 +3,7 @@
 return [
 
     /*
-     * A cors profile determines which orgins, methods, headers are allowed for
+     * A cors profile determines which origins, methods, headers are allowed for
      * a given requests. The `DefaultProfile` reads its configuration from this
      * config file.
      *
@@ -13,7 +13,7 @@ return [
     'cors_profile' => Spatie\Cors\CorsProfile\DefaultProfile::class,
 
     /*
-     * These configuration is used by `DefaultProfile`.
+     * This configuration is used by `DefaultProfile`.
      */
     'default_profile' => [
 
@@ -26,6 +26,7 @@ return [
             'GET',
             'OPTIONS',
             'PUT',
+            'PATCH',
             'DELETE',
         ],
 
@@ -34,6 +35,11 @@ return [
             'X-Auth-Token',
             'Origin',
             'Authorization',
+        ],
+
+        'forbidden_response' => [
+            'message' => 'Forbidden (cors).',
+            'status' => 403,
         ],
 
         /*

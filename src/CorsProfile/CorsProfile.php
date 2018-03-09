@@ -12,6 +12,10 @@ interface CorsProfile
 
     public function allowHeaders(): array;
 
+    public function addCorsHeaders($response);
+
+    public function addPreflightHeaders($response);
+
     public function maxAge(): int;
 
     public function isAllowed(): bool;
