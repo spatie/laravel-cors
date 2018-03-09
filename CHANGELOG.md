@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-cors` will be documented in this file
 
-## 1.0.4 - 2018-03-09
+## 1.1.0 - 2018-03-09
 
 - allow to customize error message
 
