@@ -40,6 +40,22 @@ class CorsTest extends TestCase
     }
 
     /** @test */
+    public function it_adds_the_allowed_expose_headers_in_the_cors_headers_on_a_valid_request()
+    {
+        config()->set('cors.default_profile.expose_headers', [
+            'Authorization',
+            'X-Foo-Header',
+        ]);
+
+        $this
+            ->sendRequest('POST', 'https://spatie.be')
+            ->assertSuccessful()
+            ->assertHeader('Access-Control-Expose-Headers', 'Authorization, X-Foo-Header')
+            ->assertHeader('Access-Control-Allow-Origin', '*')
+            ->assertSee('real content');
+    }
+
+    /** @test */
     public function it_will_send_a_403_for_invalid_requests()
     {
         config()->set('cors.default_profile.allow_origins', ['https://spatie.be']);

@@ -27,6 +27,11 @@ class DefaultProfile implements CorsProfile
         return config('cors.default_profile.allow_headers');
     }
 
+    public function exposeHeaders(): array
+    {
+        return config('cors.default_profile.expose_headers');
+    }
+
     public function maxAge(): int
     {
         return config('cors.default_profile.max_age');
@@ -35,7 +40,8 @@ class DefaultProfile implements CorsProfile
     public function addCorsHeaders($response)
     {
         return $response
-            ->header('Access-Control-Allow-Origin', $this->allowedOriginsToString());
+            ->header('Access-Control-Allow-Origin', $this->allowedOriginsToString())
+            ->header('Access-Control-Expose-Headers', $this->toString($this->exposeHeaders()));
     }
 
     public function addPreflightHeaders($response)

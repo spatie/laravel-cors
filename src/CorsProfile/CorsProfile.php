@@ -12,6 +12,8 @@ interface CorsProfile
 
     public function allowHeaders(): array;
 
+    public function exposeHeaders(): array;
+
     public function addCorsHeaders($response);
 
     public function addPreflightHeaders($response);
