@@ -82,6 +82,19 @@ class CorsTest extends TestCase
             ->assertSee($forbiddenMessage);
     }
 
+    /** @test */
+    public function it_will_be_a_valid_profile_if_expose_header_is_not_set()
+    {
+        config()->set('cors.default_profile.expose_headers', null);
+
+        $this
+            ->sendRequest('POST', 'https://spatie.be')
+            ->assertSuccessful()
+            ->assertHeader('Access-Control-Expose-Headers', '')
+            ->assertHeader('Access-Control-Allow-Origin', '*')
+            ->assertSee('real content');
+    }
+
     public function sendRequest(string $method, string $origin)
     {
         $headers = [

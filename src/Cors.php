@@ -3,7 +3,6 @@
 namespace Spatie\Cors;
 
 use Closure;
-use Illuminate\Http\Response;
 use Spatie\Cors\CorsProfile\CorsProfile;
 
 class Cors

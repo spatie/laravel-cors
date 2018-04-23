@@ -29,7 +29,7 @@ class DefaultProfile implements CorsProfile
 
     public function exposeHeaders(): array
     {
-        return config('cors.default_profile.expose_headers');
+        return config('cors.default_profile.expose_headers') ?? [];
     }
 
     public function maxAge(): int
