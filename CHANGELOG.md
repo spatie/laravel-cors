@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-cors` will be documented in this file
 
+## 1.2.1 - 2018-04-24
+
+- add default value for `expose_headers` config option
+
 ## 1.2.0 - 2018-03-30
 
 - add an option to manage `Access-Control-Expose-Headers`
