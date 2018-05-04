@@ -95,7 +95,16 @@ class CorsTest extends TestCase
             ->assertSee('real content');
     }
 
-    public function sendRequest(string $method, string $origin)
+    /** @test */
+    public function it_adds_the_cors_headers_on_a_valid_stream_request()
+    {
+        $this
+            ->sendRequest('POST', 'https://spatie.be', 'test-cors-stream')
+            ->assertSuccessful()
+            ->assertHeader('Access-Control-Allow-Origin', '*');
+    }
+
+    public function sendRequest(string $method, string $origin, string $uri = 'test-cors')
     {
         $headers = [
             'Origin' => $origin,
@@ -103,6 +112,6 @@ class CorsTest extends TestCase
 
         $server = $this->transformHeadersToServerVars($headers);
 
-        return $this->call($method, 'test-cors', [], [], [], $server);
+        return $this->call($method, $uri, [], [], [], $server);
     }
 }
