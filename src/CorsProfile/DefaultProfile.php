@@ -39,18 +39,20 @@ class DefaultProfile implements CorsProfile
 
     public function addCorsHeaders($response)
     {
-        return $response
-            ->header('Access-Control-Allow-Origin', $this->allowedOriginsToString())
-            ->header('Access-Control-Expose-Headers', $this->toString($this->exposeHeaders()));
+        $response->headers->set('Access-Control-Allow-Origin', $this->allowedOriginsToString());
+        $response->headers->set('Access-Control-Expose-Headers', $this->toString($this->exposeHeaders()));
+
+        return $response;
     }
 
     public function addPreflightHeaders($response)
     {
-        return $response
-            ->header('Access-Control-Allow-Methods', $this->toString($this->allowMethods()))
-            ->header('Access-Control-Allow-Headers', $this->toString($this->allowHeaders()))
-            ->header('Access-Control-Allow-Origin', $this->allowedOriginsToString())
-            ->header('Access-Control-Max-Age', $this->maxAge());
+        $response->headers->set('Access-Control-Allow-Methods', $this->toString($this->allowMethods()));
+        $response->headers->set('Access-Control-Allow-Headers', $this->toString($this->allowHeaders()));
+        $response->headers->set('Access-Control-Allow-Origin', $this->allowedOriginsToString());
+        $response->headers->set('Access-Control-Max-Age', $this->maxAge());
+
+        return $response;
     }
 
     public function isAllowed(): bool
