@@ -6,6 +6,7 @@ use Spatie\Cors\Cors;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class TestCase extends Orchestra
 {
@@ -20,6 +21,10 @@ class TestCase extends Orchestra
     {
         Route::post('test-cors', function () {
             return 'real content';
+        });
+
+        Route::post('test-cors-stream', function () {
+            return new StreamedResponse();
         });
     }
 
