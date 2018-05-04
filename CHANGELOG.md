@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-cors` will be documented in this file
 
+## 1.2.2 - 2018-05-05
+
+- add support for streamed responses
+
 ## 1.2.1 - 2018-04-24
 
 - add default value for `expose_headers` config option
