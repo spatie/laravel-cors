@@ -33,6 +33,8 @@ return [
         'allow_headers' => [
             'Content-Type',
             'X-Auth-Token',
+            'X-CSRF-TOKEN',
+            'X-Requested-With',
             'Origin',
             'Authorization',
         ],
