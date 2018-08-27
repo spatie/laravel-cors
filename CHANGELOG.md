@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-cors` will be documented in this file
 
+## 1.2.3 - 2018-08-27
+
+- add support for Laravel 5.7
+
 ## 1.2.2 - 2018-05-05
 
 - add support for streamed responses
