@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-cors` will be documented in this file
 
+## 1.3.0 - 2018-08-30
+
+- add support for `Access-Control-Allow-Credentials`
+
 ## 1.2.3 - 2018-08-27
 
 - add support for Laravel 5.7
