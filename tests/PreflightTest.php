@@ -28,6 +28,31 @@ class PreflightTest extends TestCase
     }
 
     /** @test */
+    public function it_responds_with_correct_header_for_a_preflight_request_when_allow_credentials_is_set_to_true()
+    {
+        config()->set('cors.default_profile.allow_credentials', true);
+
+        $this
+            ->sendPreflightRequest('DELETE', 'https://spatie.be')
+            ->assertHeader('Access-Control-Allow-Credentials', 'true')
+            ->assertHeader('Access-Control-Allow-Origin', 'https://spatie.be');
+    }
+
+    /** @test */
+    public function it_responds_with_correct_header_for_a_preflight_request_when_allow_credentials_is_set_to_false()
+    {
+        config()->set('cors.default_profile.allow_credentials', false);
+
+        $response = $this
+            ->sendPreflightRequest('DELETE', 'https://spatie.be')
+            ->assertHeader('Access-Control-Allow-Origin', '*');
+
+        $headerName = 'Access-Control-Allow-Credentials';
+
+        $this->assertFalse($response->headers->has($headerName), "Unexpected header [{$headerName}] is present on response.");
+    }
+
+    /** @test */
     public function it_responds_with_a_200_for_a_preflight_request_coming_from_an_allowed_origin()
     {
         config()->set('cors.default_profile.allow_origins', ['https://spatie.be']);

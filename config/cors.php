@@ -17,6 +17,8 @@ return [
      */
     'default_profile' => [
 
+        'allow_credentials' => false,
+
         'allow_origins' => [
             '*',
         ],

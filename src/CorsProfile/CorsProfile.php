@@ -6,11 +6,13 @@ interface CorsProfile
 {
     public function setRequest($request);
 
-    public function allowOrigins(): array;
+    public function allowCredentials(): bool;
+
+    public function allowHeaders(): array;
 
     public function allowMethods(): array;
 
-    public function allowHeaders(): array;
+    public function allowOrigins(): array;
 
     public function exposeHeaders(): array;
 

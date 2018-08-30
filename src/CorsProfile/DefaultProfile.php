@@ -12,6 +12,11 @@ class DefaultProfile implements CorsProfile
         $this->request = $request;
     }
 
+    public function allowCredentials(): bool
+    {
+        return config('cors.default_profile.allow_credentials');
+    }
+
     public function allowOrigins(): array
     {
         return config('cors.default_profile.allow_origins');
@@ -39,6 +44,10 @@ class DefaultProfile implements CorsProfile
 
     public function addCorsHeaders($response)
     {
+        if ($this->allowCredentials()) {
+            $response->headers->set('Access-Control-Allow-Credentials', 'true');
+        }
+
         $response->headers->set('Access-Control-Allow-Origin', $this->allowedOriginsToString());
         $response->headers->set('Access-Control-Expose-Headers', $this->toString($this->exposeHeaders()));
 
@@ -47,6 +56,10 @@ class DefaultProfile implements CorsProfile
 
     public function addPreflightHeaders($response)
     {
+        if ($this->allowCredentials()) {
+            $response->headers->set('Access-Control-Allow-Credentials', 'true');
+        }
+
         $response->headers->set('Access-Control-Allow-Methods', $this->toString($this->allowMethods()));
         $response->headers->set('Access-Control-Allow-Headers', $this->toString($this->allowHeaders()));
         $response->headers->set('Access-Control-Allow-Origin', $this->allowedOriginsToString());
@@ -79,7 +92,7 @@ class DefaultProfile implements CorsProfile
             return '';
         }
 
-        if (in_array('*', $this->allowOrigins())) {
+        if (in_array('*', $this->allowOrigins()) && ! $this->allowCredentials()) {
             return '*';
         }
 
