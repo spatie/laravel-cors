@@ -44,6 +44,6 @@ All notable changes to `laravel-cors` will be documented in this file
     
 - add support for Laravel 5.6
 
-## 1.0.0 - 2018-12-19
+## 1.0.0 - 2017-12-19
 
 - initial release
