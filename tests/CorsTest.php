@@ -54,6 +54,22 @@ class CorsTest extends TestCase
     }
 
     /** @test */
+    public function it_does_not_add_the_credentials_cors_headers_on_a_valid_request_if_allow_credentials_is_set_to_null()
+    {
+        config()->set('cors.default_profile.allow_credentials', null);
+
+        $response = $this
+            ->sendRequest('POST', 'https://spatie.be')
+            ->assertSuccessful()
+            ->assertHeader('Access-Control-Allow-Origin', '*')
+            ->assertSee('real content');
+
+        $headerName = 'Access-Control-Allow-Credentials';
+
+        $this->assertFalse($response->headers->has($headerName), "Unexpected header [{$headerName}] is present on response.");
+    }
+
+    /** @test */
     public function it_adds_the_origin_domain_in_the_cors_headers_on_a_valid_request()
     {
         config()->set('cors.default_profile.allow_origins', [
