@@ -14,7 +14,7 @@ class DefaultProfile implements CorsProfile
 
     public function allowCredentials(): bool
     {
-        return config('cors.default_profile.allow_credentials');
+        return config('cors.default_profile.allow_credentials') ? true : false;
     }
 
     public function allowOrigins(): array
