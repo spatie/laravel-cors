@@ -131,7 +131,7 @@ $app->register(Spatie\Cors\CorsServiceProvider::class);
 
 ## Usage
 
-With the middleware installed your API routes should now get apprioriate CORS headers. Preflight requests will be handled as well. If a request comes in that is not allowed, Laravel will return a `403` response.
+With the middleware installed your API routes should now get appropriate CORS headers. Preflight requests will be handled as well. If a request comes in that is not allowed, Laravel will return a `403` response.
 
 The default configuration of this package allows all requests from any origin (denoted as `'*'`). You probably want to at least specify some origins relevant to your project. If you want to allow requests to come in from `https://spatie.be` and `https://laravel.com` add those domains to the config file:
 
