@@ -149,6 +149,24 @@ The default configuration of this package allows all requests from any origin (d
 ...
 ```
 
+If you, for example, want to allow all subdomains from a specific domain, you can use the wildcard asterisk (`*`) and specifiy that:
+```php
+// config/cors.php
+
+    ...
+    'default_profile' => [
+
+    'allow_origins' => [
+        'https://spatie.be',
+        'https://laravel.com',
+
+        'https://*.spatie.be',
+        'https://*.laravel.com',
+    ],
+    ...
+...
+```
+
 ### Creating your own CORS profile
 
 Imagine you want to specify allowed origins based on the user that is currently logged in. In that case the `DefaultProfile` which just reads the config file won't cut it. Fortunately it's very easy to write your own CORS profile, which is simply a class that extends `Spatie\Cors\DefaultProfile`.
