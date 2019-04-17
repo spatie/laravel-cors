@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-cors` will be documented in this file
 
+## 1.5.0 - 2019-04-17
+
+- add wildcard matching for subdomains (#51)
+
 ## 1.4.0 - 2018-02-27
 
 - drop support for PHP 7.1
