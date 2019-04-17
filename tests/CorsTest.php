@@ -69,6 +69,35 @@ class CorsTest extends TestCase
     }
 
     /** @test */
+    public function it_adds_the_origin_domain_in_the_cors_headers_on_a_valid_request_with_wildcard_content()
+    {
+        config()->set('cors.default_profile.allow_origins', [
+            'https://*.be',
+            'https://*.com',
+        ]);
+
+        $this
+            ->sendRequest('POST', 'https://spatie.be')
+            ->assertSuccessful()
+            ->assertHeader('Access-Control-Allow-Origin', 'https://spatie.be')
+            ->assertSee('real content');
+    }
+
+    /** @test */
+    public function it_throws_error_on_an_invalid_request_with_wildcard_content()
+    {
+        config()->set('cors.default_profile.allow_origins', [
+            'https://*.spatie.be',
+            'https://*.com',
+        ]);
+
+        $this
+            ->sendRequest('POST', 'https://spatie.be')
+            ->assertStatus(403)
+            ->assertSee('Forbidden (cors).');
+    }
+
+    /** @test */
     public function it_adds_the_allowed_expose_headers_in_the_cors_headers_on_a_valid_request()
     {
         config()->set('cors.default_profile.expose_headers', [
