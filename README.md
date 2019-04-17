@@ -89,7 +89,7 @@ return [
             'Last-Modified',
             'Pragma',
         ],
-        
+
         'forbidden_response' => [
             'message' => 'Forbidden (cors).',
             'status' => 403,
@@ -144,6 +144,24 @@ The default configuration of this package allows all requests from any origin (d
     'allow_origins' => [
         'https://spatie.be',
         'https://laravel.com',
+    ],
+    ...
+...
+```
+
+If you, for example, want to allow all subdomains from a specific domain, you can use the wildcard asterisk (`*`) and specifiy that:
+```php
+// config/cors.php
+
+    ...
+    'default_profile' => [
+
+    'allow_origins' => [
+        'https://spatie.be',
+        'https://laravel.com',
+
+        'https://*.spatie.be',
+        'https://*.laravel.com',
     ],
     ...
 ...

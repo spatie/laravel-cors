@@ -78,7 +78,11 @@ class DefaultProfile implements CorsProfile
             return true;
         }
 
-        return in_array($this->request->header('Origin'), $this->allowOrigins());
+        $matches = collect($this->allowOrigins())->filter(function ($allowedOrigin) {
+            return fnmatch($allowedOrigin, $this->request->header('Origin'));
+        });
+
+        return $matches->count() > 0;
     }
 
     protected function toString(array $array): string
