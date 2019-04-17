@@ -89,7 +89,7 @@ return [
             'Last-Modified',
             'Pragma',
         ],
-        
+
         'forbidden_response' => [
             'message' => 'Forbidden (cors).',
             'status' => 403,
