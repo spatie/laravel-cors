@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-cors` will be documented in this file
 
+## 1.5.1 - 2019-06-06
+
+- change preflight response status code to 204
+
 ## 1.5.0 - 2019-04-17
 
 - add wildcard matching for subdomains (#51)
