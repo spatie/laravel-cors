@@ -59,7 +59,7 @@ class PreflightTest extends TestCase
 
         $this
             ->sendPreflightRequest('DELETE', 'https://spatie.be')
-            ->assertStatus(200);
+            ->assertStatus(204);
     }
 
     /** @test */
