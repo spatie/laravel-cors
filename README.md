@@ -6,7 +6,7 @@
 [![StyleCI](https://styleci.io/repos/113957368/shield?branch=master)](https://styleci.io/repos/113957368)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-cors.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cors)
 
-This package will add CORS headers to the responses of your Laravel or Lumen app. Read [this excellent article](https://spring.io/understanding/CORS) on the subject if you want to understand what CORS is all about.
+This package will add CORS headers to the responses of your Laravel or Lumen app. For more infomation about CORS, see the [Mozilla CORS documentation](developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
 This package supports preflight requests and is easily configurable to fit your needs.
 
