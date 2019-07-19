@@ -5,16 +5,17 @@ namespace Spatie\Cors\Tests;
 class PreflightTest extends TestCase
 {
     /** @test */
-    public function it_responds_with_a_200_for_a_valid_preflight_request()
+    public function it_responds_with_a_204_for_a_valid_preflight_request()
     {
         $response = $this
             ->sendPreflightRequest('DELETE', 'https://spatie.be')
-            ->assertSuccessful()
-            ->assertSee('Preflight OK')
+            ->assertStatus(204)
             ->assertHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, PATCH, DELETE')
             ->assertHeader('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization')
             ->assertHeader('Access-Control-Allow-Origin', '*')
             ->assertHeader('Access-Control-Max-Age', 60 * 60 * 24);
+
+        $this->assertEmpty($response->content());
     }
 
     /** @test */
@@ -53,7 +54,7 @@ class PreflightTest extends TestCase
     }
 
     /** @test */
-    public function it_responds_with_a_200_for_a_preflight_request_coming_from_an_allowed_origin()
+    public function it_responds_with_a_204_for_a_preflight_request_coming_from_an_allowed_origin()
     {
         config()->set('cors.default_profile.allow_origins', ['https://spatie.be']);
 
