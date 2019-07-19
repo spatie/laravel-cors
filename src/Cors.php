@@ -63,7 +63,7 @@ class Cors
             return $this->forbiddenResponse();
         }
 
-        return $this->corsProfile->addPreflightHeaders(response('Preflight OK', 204));
+        return $this->corsProfile->addPreflightHeaders(response(null, 204));
     }
 
     protected function forbiddenResponse()
