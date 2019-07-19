@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-cors` will be documented in this file
 
+## 1.5.2 - 2019-07-19
+
+- improve responses for preflight requests
+
 ## 1.5.1 - 2019-06-06
 
 - change preflight response status code to 204
