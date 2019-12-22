@@ -4,7 +4,7 @@ namespace Spatie\Cors\CorsProfile;
 
 class DefaultProfile implements CorsProfile
 {
-    /** Illuminate\Http\Request */
+    /** @var \Illuminate\Http\Request */
     protected $request;
 
     public function setRequest($request)
