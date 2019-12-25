@@ -2,10 +2,10 @@
 
 namespace Spatie\Cors\Tests;
 
-use Spatie\Cors\Cors;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\Cors\Cors;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class TestCase extends Orchestra
