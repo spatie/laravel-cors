@@ -1,3 +1,7 @@
+# Notice
+
+We have abandoned this package because Laravel 7 introduced native support for CORS. Only use this package if you're on Laravel 6 or below.
+
 # Send CORS headers in a Laravel application
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-cors.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-cors)
